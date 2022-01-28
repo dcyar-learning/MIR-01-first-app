@@ -1,10 +1,15 @@
 const express = require('express')
 const app = express()
 
-app.get('/makers/:nombre', (req, res) => {
-  const [first, ...rest] = req.params.nombre;
+app.get('/', (req, res) => {
+  let message = '';
 
-  res.send(`<h1>Hola ${first.toUpperCase() + rest.join('')}!</h1>`);
+  for (let i = 1; i <= 50; i++) {
+    message += (i % 2 === 0) ? `${i} Soy Par!` : `${i} Soy Impar!`;
+    message += '<br />';
+  }
+
+  res.send(message);
 });
 
 app.listen(3000, () => console.log('Listening on port 3000!'));
