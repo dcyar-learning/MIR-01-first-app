@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 
-app.get('/', (req, res) => {
-  const {nombre = "desconocido"} = req.query;
+app.get('/makers/:nombre', (req, res) => {
+  const nombre = req.params.nombre;
 
   res.send(`<h1>Hola ${nombre}!</h1>`);
 });
