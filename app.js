@@ -5,8 +5,9 @@ app.get('/', (req, res) => {
   let message = '';
 
   for (let i = 1; i <= 50; i++) {
+    message += '<p>';
     message += (i % 2 === 0) ? `${i} Soy Par!` : `${i} Soy Impar!`;
-    message += '<br />';
+    message += '</p>';
   }
 
   res.send(message);
