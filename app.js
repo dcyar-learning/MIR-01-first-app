@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
     Visitor.findOne({name}, (err, visitor) => {
       if (err) return console.log(err)
 
-      if (visitor) {
+      if (visitor && name === 'Anónimo') {
         visitor.count++
         visitor.save()
       } else {
