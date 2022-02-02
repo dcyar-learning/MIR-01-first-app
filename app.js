@@ -26,6 +26,8 @@ app.route('/')
     Visitor.create({
       name,
       date: new Date()
+    }, (err) => {
+      if(err) return console.log(err)
     })
 
     res.send('El visitante fue almacenado con éxito')
