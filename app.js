@@ -8,8 +8,8 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/mongo-1',
 mongoose.connection.on('error', (err) => console.log(err))
 
 const visitorSchema = mongoose.Schema({
-  date: mongoose.Schema.Types.Date,
   name: mongoose.Schema.Types.String,
+  count: mongoose.Schema.Types.Number
 })
 
 const Visitor = mongoose.model('Visitor', visitorSchema)
@@ -19,23 +19,27 @@ app.set('views', 'views')
 
 app.use(express.urlencoded({ extended: true }))
 
-app.route('/')
-  .get((req, res) => {
+app.get('/', (req, res) => {
     const {name = 'Anónimo'} = req.query
 
-    Visitor.create({
-      name,
-      date: new Date()
-    }, (err) => {
-      if(err) return console.log(err)
+    Visitor.findOne({name}, (err, visitor) => {
+      if (err) return console.log(err)
+
+      if (visitor) {
+        visitor.count++
+        visitor.save()
+      } else {
+        Visitor.create({name, count: 1})
+      }
     })
 
-    res.send('<h1>El visitante fue almacenado con éxito</h1>')
-  })
-  .post((req, res) => {
-    const {name} = req.body
+    Visitor.find({}, (err, visitors) => {
+      if (err) return console.log(err)
 
-    res.render('home', {name})
-  })
+      res.render('home', {
+        visitors
+      })
+    })
+  });
 
 app.listen(3000, () => console.log('Listening on port 3000!'));
