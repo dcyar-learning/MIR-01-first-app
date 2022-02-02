@@ -6,11 +6,14 @@ app.set('views', 'views')
 
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => res.render('form'))
-app.post('/', (req, res) => {
-  const {name} = req.body
+app.route('/')
+  .get((req, res) => {
+    res.send(req.headers['user-agent'])
+  })
+  .post((req, res) => {
+    const {name} = req.body
 
-  res.render('home', {name})
-})
+    res.render('home', {name})
+  })
 
 app.listen(3000, () => console.log('Listening on port 3000!'));
