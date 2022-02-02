@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/mongo-1', { useNewUrlParser: true });
 
 mongoose.connection.on('error', (err) => console.log(err))
 
@@ -30,7 +30,7 @@ app.route('/')
       if(err) return console.log(err)
     })
 
-    res.send('El visitante fue almacenado con éxito')
+    res.send('<h1>El visitante fue almacenado con éxito</h1>')
   })
   .post((req, res) => {
     const {name} = req.body
