@@ -9,23 +9,8 @@ mongoose.connection.on('error', (err) => console.log(err))
 
 const productSchema = mongoose.Schema({
   name: mongoose.Schema.Types.String,
-  email: mongoose.Schema.Types.String,
-  password: mongoose.Schema.Types.String,
+  price: mongoose.Schema.Types.Float
 })
-
-productSchema.statics.authenticate = async (email, password) => {
-  const user = await mongoose.model('User').findOne({ email });
-
-  if(!user) return null
-
-  // si existe comparamos la contraseña
-  return new Promise((resolve, reject) => {
-    bcrypt.compare(password, user.password, (err, result) => {
-      if (err) reject(err);
-      resolve(result === true ? user : null);
-    });
-  });
-};
 
 const Product = mongoose.model('Product', productSchema)
 
