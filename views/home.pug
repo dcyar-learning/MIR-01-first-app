@@ -4,17 +4,17 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Hello
+    title Formulario de Registro
   body
-    table
+    a(href="/register") Registrarse
+    
+    table(border="1")
       thead
         tr
-          th Id
           th Name
-          th Visits 
+          th Email
       tbody
-        each visitor in visitors
+        each user in users
           tr
-            td #{visitor._id}
-            td #{visitor.name}
-            td #{visitor.count}
+            td #{user.name}
+            td #{user.email}

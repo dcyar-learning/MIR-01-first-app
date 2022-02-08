@@ -3,5 +3,13 @@ html
     title Hello World
   body
     form(action="/", method="post")
-      input(type="text", name="name" id="name", placeholder="Name")
-      input(type="submit" value="Enviar")
+      label(for="name") Nombre
+      input(type="text", name="name" id="name", placeholder="Name" value="Homero")
+      br
+      label(for="email") Email
+      input(type="email", name="email" id="email", placeholder="Email" value="homero@mail.com")
+      br
+      label(for="password") Password
+      input(type="password", name="password" id="password", placeholder="Password" value="password")
+      br
+      input(type="submit" value="Registrarse")
