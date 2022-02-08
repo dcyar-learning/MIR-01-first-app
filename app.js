@@ -29,7 +29,7 @@ app.get('/', async (req, res) => {
 
     if (visitor && name !== 'Anónimo') {
       visitor.count++
-      visitor.save()
+      await visitor.save()
     } else {
       await Visitor.create({name, count: 1})
     }
