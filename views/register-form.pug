@@ -1,8 +1,8 @@
 html
   head
-    title Hello World
+    title Register
   body
-    form(action="/", method="post")
+    form(action="/register", method="post")
       label(for="name") Nombre
       input(type="text", name="name" id="name", placeholder="Name" value="Homero")
       br
@@ -12,4 +12,5 @@ html
       label(for="password") Password
       input(type="password", name="password" id="password", placeholder="Password" value="password")
       br
+      a(href="/login") Ingresar
       input(type="submit" value="Registrarse")
